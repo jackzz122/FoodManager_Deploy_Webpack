@@ -1,0 +1,32 @@
+# Node modules
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Temporary files
+*.log
+yarn-error.log
+pnpm-lock.yaml
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Webpack specific
+.cache/
+webpack-stats.json
+
+# IDE / Editor files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# npm / yarn lock files (chỉ giữ lại 1 file duy nhất)
+package-lock.json
+yarn.lock
