@@ -1,11 +1,15 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+
 module.exports = {
   entry: "./src/index.js",
   output: {
-    path: path.join(__dirname, "/build"),
+    path: path.resolve(__dirname, "dist"), // Đổi từ 'build' thành 'dist'
     filename: "bundle.js",
+    publicPath: "/",
+    clean: true, // Xóa các file cũ khi build lại
   },
+  mode: "production",
   module: {
     rules: [
       { test: /\.js$/, exclude: /node_modules/, use: ["babel-loader"] },
@@ -22,20 +26,12 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg)$/,
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              name: "[path][name].[ext]", // Cấu hình tên file đầu ra
-              context: path.resolve(__dirname, "src"), // Đảm bảo các đường dẫn là đúng
-            },
-          },
-        ],
+        type: "asset/resource", // Thay thế file-loader bằng asset module
       },
     ],
   },
   resolve: {
-    extensions: [".js", ".jsx"], // Thêm các phần mở rộng mà Webpack nên tự động nhận diện
+    extensions: [".js", ".jsx"],
   },
   plugins: [
     new HtmlWebpackPlugin({
