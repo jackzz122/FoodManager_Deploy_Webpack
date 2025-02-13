@@ -26,7 +26,10 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg)$/,
-        type: "asset/resource", // Thay thế file-loader bằng asset module
+        type: "asset/resource",
+        generator: {
+          filename: "assets/images/[hash][ext][query]",
+        },
       },
     ],
   },
